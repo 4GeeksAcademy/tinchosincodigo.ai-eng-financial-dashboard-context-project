@@ -4,6 +4,7 @@ import {
   computeKPIs,
   computeMonthlyData,
   formatCurrency,
+  formatPeriodRange,
   formatPercent,
 } from "./financial-utils";
 import type { FinancialMovement } from "./financial-types";
@@ -100,6 +101,18 @@ describe("computeMonthlyData", () => {
       outcome: 0,
       profitPercent: 100,
     });
+  });
+});
+
+describe("formatPeriodRange", () => {
+  it("formats the first and last available months", () => {
+    expect(formatPeriodRange(computeMonthlyData(sampleMovements))).toBe(
+      "Jan 2024 - Feb 2024",
+    );
+  });
+
+  it("reports when period data is unavailable", () => {
+    expect(formatPeriodRange([])).toBe("Period unavailable");
   });
 });
 

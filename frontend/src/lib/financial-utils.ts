@@ -66,6 +66,14 @@ export function computeMonthlyData(
     });
 }
 
+export function formatPeriodRange(monthlyData: MonthlyDataPoint[]): string {
+  if (monthlyData.length === 0) {
+    return "Period unavailable";
+  }
+
+  return `${monthlyData[0].month} - ${monthlyData[monthlyData.length - 1].month}`;
+}
+
 export function formatCurrency(value: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
